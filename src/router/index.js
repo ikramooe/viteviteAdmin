@@ -6,6 +6,9 @@ const TheContainer = () => import('@/containers/TheContainer')
 
 // Views
 const Dashboard = () => import('@/views/Dashboard')
+const Chauffeurs = () => import('@/views/pages/Chauffeurs')
+const Entreprises =()=>import('@/views/pages/Entreprises')
+const Codespromo =()=>import('@/views/pages/Codespromo')
 
 const Colors = () => import('@/views/theme/Colors')
 const Typography = () => import('@/views/theme/Typography')
@@ -80,6 +83,24 @@ function configRoutes () {
           component: Dashboard
         },
         {
+          path: 'chauffeurs',
+          name: 'Chauffeurs',
+          component: Chauffeurs
+        },
+        {
+          path: 'entreprises',
+          name: 'Entreprises',
+          component: Entreprises
+        },
+        {
+          path: 'codespromo',
+          name: 'CodesPromo',
+          component: Codespromo
+        },
+
+
+        
+        {
           path: 'theme',
           redirect: '/theme/colors',
           name: 'Theme',
@@ -92,6 +113,7 @@ function configRoutes () {
               name: 'Colors',
               component: Colors
             },
+            
             {
               path: 'typography',
               name: 'Typography',
@@ -99,6 +121,7 @@ function configRoutes () {
             }
           ]
         },
+        
         {
           path: 'charts',
           name: 'Charts',

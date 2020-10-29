@@ -23,9 +23,9 @@
         itemsPerPageSelect
         sorter
         >
-        <template #status="{item}">
+        <template #employees="{item}">
           <td>
-            <CBadge :color="getBadge(item.status)">{{item.status}}</CBadge>
+            <span>{{item.codes.length}}</span>
           </td>
         </template>
         <template #show_details="{item, index}">
@@ -41,15 +41,15 @@
           </CButton>
         </td>
       </template>
-
-         <template #details="{item}" >
+      <template #details="{item}" >
            <CCollapse :show="Boolean(item._toggled)" :duration="collapseDuration">
           <CCardBody>
+              
+              <h5>Codes des employées</h5>
+              <ul v-for="code in item.codes" :key="code['code']"> 
+               <li> {{code['code']}}   {{code['user']}} </li>
+              </ul>
             
-              <h4>
-              A retourner : {{item.earnings['toSend']}} 
-              </h4>
-              <p class="text-muted">User since: {{item.created_at}}</p>
               <CButton size="sm" color="info" class="">
                 User Settings
               </CButton>
@@ -64,7 +64,7 @@
         </CCollapse>
         </template>
 
-
+        
        
        
       </CDataTable>
@@ -94,11 +94,11 @@ export default {
       type: Array,
       default () {
       return [
-        { key: 'nom', _style:'min-width:200px' },
-        { key: 'prenom', _style:'min-width:100px;' },
-        'phone',
-        'wilaya',
+        { key: 'name', _style:'min-width:200px' },
+        { key: 'wilaya', _style:'min-width:100px;' },
+  
         { key: 'status', _style:'min-width:100px;' },
+        'employees',
         { 
           key: 'show_details', 
           label: '', 
@@ -106,6 +106,7 @@ export default {
           sorter: false, 
           filter: false
         }
+        
       ]
        
       }
@@ -130,10 +131,8 @@ export default {
     },
 
     toggleDetails (item) {
-      console.log(item._toggled);
-      this.$set(item, '_toggled', !item._toggled)
-      console.log(item._toggled);
       
+      this.$set(item, '_toggled', !item._toggled)
       this.collapseDuration = 300
       this.$nextTick(() => { this.collapseDuration = 0})
     },

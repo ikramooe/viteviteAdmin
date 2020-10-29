@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
-
+import 'firebase/database'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAvValcY1FEKrM1bGBSANGIPm-9yAxQBug",
@@ -14,12 +14,16 @@ const firebaseConfig = {
   measurementId: "G-5PL34TH3MW"
 };
 
-firebase.initializeApp(firebaseConfig);
+//firebase.initializeApp(firebaseConfig);
+let app = firebase
+.initializeApp(firebaseConfig);
+const db =   app.firestore()
+const realtimeDB = app.database()
 
-const db = firebaseApp.firestore();
-const auth = firebase.auth()
+const { Timestamp, GeoPoint } = firebase.firestore
+export { Timestamp, GeoPoint }
 
-export{
-  db,
-  auth
-}
+const auth = firebase.auth();
+
+export  {db , realtimeDB};
+//const users = realDB.database;

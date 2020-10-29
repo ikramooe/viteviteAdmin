@@ -24,6 +24,24 @@ export default [
       },
       {
         _name: 'CSidebarNavItem',
+        name: 'Chauffeurs',
+        to: '/chauffeurs',
+        icon: 'cil-drop'
+      },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'Entreprises',
+        to: '/entreprises',
+        icon: 'cil-drop'
+      },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'Codes Promo',
+        to: '/codespromo',
+        icon: 'cil-drop'
+      },
+      {
+        _name: 'CSidebarNavItem',
         name: 'Typography',
         to: '/theme/typography',
         icon: 'cil-pencil'

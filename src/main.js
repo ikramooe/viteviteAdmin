@@ -5,16 +5,20 @@ import router from './router'
 import CoreuiVue from '@coreui/vue'
 import { iconsSet as icons } from './assets/icons/icons.js'
 import store from './store'
+import { firestorePlugin } from 'vuefire'
+import { VuejsDatatableFactory } from 'vuejs-datatable';
 
 Vue.config.performance = true
 Vue.use(CoreuiVue)
-Vue.prototype.$log = console.log.bind(console)
 
+Vue.prototype.$log = console.log.bind(console)
+Vue.use(firestorePlugin)
 new Vue({
   el: '#app',
   router,
   store,
   icons,
+  firestorePlugin,
   template: '<App/>',
   components: {
     App

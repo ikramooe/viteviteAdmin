@@ -1,11 +1,6 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true,
-    "driversAvailable": {
-      ".indexOn": [
-        "g"
-      ]
-    }
+    ".read": "auth != null",
+    ".write": "auth != null"
   }
 }
