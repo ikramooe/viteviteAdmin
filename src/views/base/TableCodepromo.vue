@@ -23,9 +23,9 @@
         itemsPerPageSelect
         sorter
         >
-        <template #supprimer >
+        <template #supprimer="{item}" >
            <td>
-            <CButton size="sm" color="danger" class="ml-1">
+            <CButton size="sm" color="danger" class="ml-1" @click="deleteItem(item)">
                 Delete
               </CButton>
           </td> 
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import {db,realtimeDB} from '../../firebase'
 export default {
   name: 'Table',
   data(){
@@ -76,7 +77,11 @@ export default {
     dark: Boolean
   },
   methods: {
-    
+   deleteItem(item){
+    db.collection('CodesPromo')
+      .doc(item.id)
+      .delete()
+   }    
 
     
 

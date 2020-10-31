@@ -9,6 +9,10 @@ const Dashboard = () => import('@/views/Dashboard')
 const Chauffeurs = () => import('@/views/pages/Chauffeurs')
 const Entreprises =()=>import('@/views/pages/Entreprises')
 const Codespromo =()=>import('@/views/pages/Codespromo')
+const AddEntreprise =()=>import('@/views/pages/AddEntreprise')
+const EditEntreprise =()=>import('@/views/pages/EditEntreprise')
+const ChauffeurDetails =()=>import('@/views/pages/ChauffeurDetails')
+const Stats =()=>import('@/views/pages/Stats')
 
 const Colors = () => import('@/views/theme/Colors')
 const Typography = () => import('@/views/theme/Typography')
@@ -88,14 +92,37 @@ function configRoutes () {
           component: Chauffeurs
         },
         {
+          path: 'edit',
+          name: 'Edit',
+          props:true,
+          component: EditEntreprise
+        },
+        {
+          path: 'details-chauffeur',
+          name: 'details-chauffeur',
+          props:true,
+          component: ChauffeurDetails
+        },
+        {
           path: 'entreprises',
           name: 'Entreprises',
+          
           component: Entreprises
+        },
+        {
+          path: 'ajouter-entreprise',
+          name: 'ajouter-entreprise',
+          component: AddEntreprise
         },
         {
           path: 'codespromo',
           name: 'CodesPromo',
           component: Codespromo
+        },
+        {
+          path: 'stats',
+          name: 'Stats',
+          component: Stats
         },
 
 

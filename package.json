@@ -37,6 +37,8 @@
     "@coreui/vue": "^3.0.12",
     "@coreui/vue-chartjs": "^1.0.5",
     "firebase": "^7.24.0",
+    "jspdf": "^2.1.1",
+    "jspdf-autotable": "^3.5.13",
     "vue": "~2.6.11",
     "vue-router": "~3.3.2",
     "vuefire": "^2.2.4",

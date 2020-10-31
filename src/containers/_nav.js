@@ -42,6 +42,12 @@ export default [
       },
       {
         _name: 'CSidebarNavItem',
+        name: 'Statistiques',
+        to: '/stats',
+        icon: 'cil-drop'
+      },
+      {
+        _name: 'CSidebarNavItem',
         name: 'Typography',
         to: '/theme/typography',
         icon: 'cil-pencil'

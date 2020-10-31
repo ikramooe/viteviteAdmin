@@ -28,6 +28,13 @@
             <CBadge :color="getBadge(item.status)">{{item.status}}</CBadge>
           </td>
         </template>
+        <template #change_state="{item}">
+                <td class="py-2">
+                    <CButton color="danger" variant="outline" square size="sm" @click="changeStatus(item)">
+                        {{item.status =='Active' ? 'Suspend' : 'Activer'}}
+                    </CButton>
+                </td>
+        </template>
         <template #show_details="{item, index}">
         <td class="py-2">
           <CButton
@@ -50,8 +57,8 @@
               A retourner : {{item.earnings['toSend']}} 
               </h4>
               <p class="text-muted">User since: {{item.created_at}}</p>
-              <CButton size="sm" color="info" class="">
-                User Settings
+              <CButton size="sm" color="info" class="" @click="edit(item)">
+                details
               </CButton>
               <CButton size="sm" color="danger" class="ml-1">
                 Delete
@@ -73,13 +80,18 @@
 </template>
 
 <script>
+import Router from '../../router/index'
 export default {
+  
   name: 'Table',
   data(){
     return {
       details:[],
       setDetails:[],
-      collapseDuration:0
+      collapseDuration:0,
+      monthNames : ["Janvier", "Fevrier", "Mars", "Avril", "May", "Juin",
+  "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"
+],
     
     }
   },
@@ -105,6 +117,13 @@ export default {
           _style: 'width:1%', 
           sorter: false, 
           filter: false
+        },
+        {
+          key: 'change_state',
+          label: '',
+          _style: 'width:1%',
+          sorter: false,
+          filter: false
         }
       ]
        
@@ -121,12 +140,43 @@ export default {
     fixed: Boolean,
     dark: Boolean
   },
+  data(){
+    return {
+      codes:[],
+      monthNames : ["Janvier", "Fevrier", "Mars", "Avril", "May", "Juin",
+  "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"
+],
+
+    }
+  },
   methods: {
+    getMonth(data){
+      let trips=this.monthNames[new Date(data*1000).getMonth()];
+      return trips;       
+
+    },
+     edit(item){
+      
+        this.monthNames.forEach(element => {
+          var howmany =0;
+          item.trips.forEach(trip => {
+            var data = trip['created_at'].seconds;
+            if(this.getMonth(data)==element){
+                  howmany=howmany+1;
+                  alert(howmany);
+                  item.trips.pop(element);
+            }
+          });
+          //alert('olaaa');
+          this.codes.push(howmany);
+        });
+        Router.push({name:'details-chauffeur',params:{'chauffeur':item,'details':this.codes}}); 
+    },
     getBadge (status) {
       return status === 'Active' ? 'success'
         : status === 'Inactive' ? 'secondary'
           : status === 'Pending' ? 'warning'
-            : status === 'Banned' ? 'danger' : 'primary'
+            : status === 'Suspended' ? 'danger' : 'primary'
     },
 
     toggleDetails (item) {

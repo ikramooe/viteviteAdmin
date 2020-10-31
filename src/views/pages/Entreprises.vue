@@ -6,14 +6,15 @@
           <template #header>
             <CIcon name="cil-grid"/> Simple Table
             <div class="card-header-actions">
-              <a 
-                href="https://coreui.io/vue/docs/components/nav" 
-                class="card-header-action" 
-                rel="noreferrer noopener" 
-                target="_blank"
-              >
-                <small class="text-muted">docs</small>
+             <a
+                color="primary"
+                variant="outline"
+                square
+                size="sm"
+                href="/ajouter-entreprise"
+                > Ajouter une entreprise
               </a>
+              
             </div>
           </template>
         </CTableWrapper>
